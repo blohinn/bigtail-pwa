@@ -31,25 +31,7 @@
           </div>
         </div>
       </div>
-      <div class="form-group">
-        <label for="country">Страна:</label>
-        <select class="form-control" id="country" name="country">
-          <option>1</option>
-          <option>2</option>
-          <option>3</option>
-          <option>4</option>
-        </select>
-        <small class="form-text text-muted">
-          Необязательно.
-        </small>
-      </div>
-      <div class="form-group">
-        <label for="city">Город:</label>
-        <input type="text" class="form-control" id="city" name="city" placeholder="Выберите страну" disabled>
-        <small class="form-text text-muted">
-          Необязательно.
-        </small>
-      </div>
+      <country-city-selector></country-city-selector>
       <div class="form-group">
         <button type="submit" class="btn btn-primary btn-lg btn-block">Найти</button>
       </div>
@@ -58,7 +40,12 @@
 </template>
 
 <script>
-export default {};
+import CountryCitySelector from "./../utils/CountryCitySelector";
+export default {
+  components: {
+    CountryCitySelector
+  }
+};
 </script>
 
 <style>
