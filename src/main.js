@@ -6,6 +6,8 @@ import App from "./App.vue";
 import Home from "./components/Home";
 import ReceiveSaveToken from "./components/auth/ReceiveSaveToken";
 
+import GroupsResultsPage from "./components/results/Groups";
+
 import { store } from "./store";
 
 Vue.use(VueRouter);
@@ -20,6 +22,10 @@ var router = new VueRouter({
     {
       path: "/auth",
       component: ReceiveSaveToken
+    },
+    {
+      path: "/search/groups",
+      component: GroupsResultsPage
     }
   ],
   mode: "history"

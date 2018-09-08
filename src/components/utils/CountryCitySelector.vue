@@ -29,13 +29,12 @@
     </div>
     <div class="form-group">
       <label for="city">Город:</label>
-      <input type="text" class="form-control typeahead" id="city" name="city" placeholder="Выберите страну" v-on:input="onCityInputChange($event.target.value)" v-bind:disabled="!selectedCountryId" data-provide="typeahead">
+      <input type="text" class="form-control typeahead" id="city" placeholder="Выберите страну" v-on:input="onCityInputChange($event.target.value)" v-bind:disabled="!selectedCountryId" data-provide="typeahead">
       <small class="form-text text-muted">
         Необязательно.
       </small>
-      {{ selectedCityId }}
     </div>
-    <input type="hidden" id="cityId" name="cityId">
+    <input type="hidden" id="city-id" name="city-id">
   </div>
 </template>
 
@@ -92,7 +91,7 @@ export default {
       },
       select: (event, ui) => {
         $("#city").val(ui.item.label);
-        $("#cityId").val(ui.item.value);
+        $("#city-id").val(ui.item.value);
         this.selectedCityId = ui.item.value;
         return false;
       }
