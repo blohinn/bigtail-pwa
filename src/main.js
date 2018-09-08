@@ -7,6 +7,7 @@ import Home from "./components/Home";
 import ReceiveSaveToken from "./components/auth/ReceiveSaveToken";
 
 import GroupsResultsPage from "./components/results/Groups";
+import FriendsResultsPage from "./components/results/Friends";
 
 import { store } from "./store";
 
@@ -26,6 +27,10 @@ var router = new VueRouter({
     {
       path: "/search/groups",
       component: GroupsResultsPage
+    },
+    {
+      path: "/search/friends",
+      component: FriendsResultsPage
     }
   ],
   mode: "history"
