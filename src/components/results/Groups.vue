@@ -1,17 +1,22 @@
 <template>
   <div id="results">
+    <!--
     <show-by-list v-bind:itemsList="items" v-bind:page="page" v-on:prev-page="onPrevPage()" v-on:next-page="onNextPage()"></show-by-list>
+    -->
+    <show-by-card v-bind:itemsList="items" v-bind:page="page" v-on:prev-page="onPrevPage()" v-on:next-page="onNextPage()"></show-by-card>
   </div>
 </template>
 
 <script>
 import ShowByList from "./show/ByList";
+import ShowByCard from "./show/ByCard";
 import PaginationMixIn from "./paginationmixin.js";
 
 export default {
   mixins: [PaginationMixIn],
   components: {
-    ShowByList
+    ShowByList,
+    ShowByCard
   },
   data() {
     return {
