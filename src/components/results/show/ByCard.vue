@@ -1,10 +1,23 @@
 <template>
   <div id="by-card">
     <div v-if="itemsList.length != 0">
-      {{ itemsList[currentCard].first_name }} {{ itemsList[currentCard].last_name }}
+      <div class="row justify-content-center">
+        <div class="col-12 col-lg-5">
+          <div class="view-box">
+            <p>Пока криво</p>
+            <div class="owl-carousel">
+              <div v-for="(photo, index) in itemsList[currentCard].links_photo.slice(0,4)" :key="index">
+                <div v-if="itemsList[currentCard].links_photo[index].sizes[4].url" style="padding: 0;">
+                  <img v-bind:src="itemsList[currentCard].links_photo[index].sizes[4].url">
+                </div>
+              </div>
+            </div>
+            <button type="button" v-on:click="prevCard()">Пред. карточка</button>
+            <button type="button" v-on:click="nextCard()">След. карточка</button>
+          </div>
+        </div>
+      </div>
     </div>
-    <button type="button" v-on:click="prevCard()">Пред. карточка</button>
-    <button type="button" v-on:click="nextCard()">След. карточка</button>
   </div>
 </template>
 
@@ -74,7 +87,17 @@ export default {
       this.$emit("next-page");
       this.currentCard = 0;
     }
+  },
+  mounted() {
+    $(document).ready(function() {
+      $(".owl-carousel").owlCarousel({
+        items: 1,
+        lazyLoad: true
+      });
+    });
   }
 };
 </script>
 
+<style>
+</style>
