@@ -1,7 +1,6 @@
 <template>
   <div id="results">
     <results-view-type-selector v-on:results-view-type-changed="onResultsViewChanged($event)"></results-view-type-selector>
-    {{ resultsViewType }}
     <show-by-list v-if="resultsViewType == 'list'" v-bind:itemsList="items" v-bind:page="page" v-on:prev-page="onPrevPage()" v-on:next-page="onNextPage()"></show-by-list>
     <show-by-card v-if="resultsViewType == 'card'" v-bind:itemsList="items" v-bind:page="page" v-on:prev-page="onPrevPage()" v-on:next-page="onNextPage()"></show-by-card>
   </div>
@@ -33,8 +32,6 @@ export default {
   },
   methods: {
     updateItems(page = 1) {
-      console.log("обновление");
-
       let url = new URL(window.location.href);
 
       let screenName = url.searchParams.get("user-link").split("/")[3];

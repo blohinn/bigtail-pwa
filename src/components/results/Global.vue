@@ -1,9 +1,8 @@
 <template>
   <div id="results">
-    <!--
-    <show-by-list v-bind:itemsList="items" v-bind:page="page" v-on:prev-page="onPrevPage()" v-on:next-page="onNextPage()"></show-by-list>
-    -->
-    <show-by-card v-bind:itemsList="items" v-bind:page="page" v-on:prev-page="onPrevPage()" v-on:next-page="onNextPage()"></show-by-card>
+    <results-view-type-selector v-on:results-view-type-changed="onResultsViewChanged($event)"></results-view-type-selector>
+    <show-by-list v-if="resultsViewType == 'list'" v-bind:itemsList="items" v-bind:page="page" v-on:prev-page="onPrevPage()" v-on:next-page="onNextPage()"></show-by-list>
+    <show-by-card v-if="resultsViewType == 'card'" v-bind:itemsList="items" v-bind:page="page" v-on:prev-page="onPrevPage()" v-on:next-page="onNextPage()"></show-by-card>
   </div>
 </template>
 
@@ -11,16 +10,19 @@
 import ShowByList from "./show/ByList";
 import ShowByCard from "./show/ByCard";
 import PaginationMixIn from "./paginationmixin.js";
+import ResultsViewTypeSelector from "../utils/ResultsViewTypeSelector";
 
 export default {
   mixins: [PaginationMixIn],
   components: {
     ShowByList,
-    ShowByCard
+    ShowByCard,
+    ResultsViewTypeSelector
   },
   data() {
     return {
-      items: []
+      items: [],
+      resultsViewType: this.$store.state.resultsViewType
     };
   },
   computed: {
@@ -63,6 +65,10 @@ export default {
           }
         }
       );
+    },
+    onResultsViewChanged(viewType) {
+      this.resultsViewType = viewType;
+      this.updateItems(this.page);
     }
   }
 };
