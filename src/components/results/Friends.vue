@@ -1,8 +1,9 @@
 <template>
   <div id="results">
     <results-view-type-selector v-on:results-view-type-changed="onResultsViewChanged($event)"></results-view-type-selector>
-    <show-by-list v-if="resultsViewType == 'list'" v-bind:itemsList="items" v-bind:page="page" v-on:prev-page="onPrevPage()" v-on:next-page="onNextPage()"></show-by-list>
-    <show-by-card v-if="resultsViewType == 'card'" v-bind:itemsList="items" v-bind:page="page" v-on:prev-page="onPrevPage()" v-on:next-page="onNextPage()"></show-by-card>
+    <loader v-if="!itemsLoaded"></loader>
+    <show-by-list v-if="resultsViewType == 'list' && itemsLoaded" v-bind:itemsList="items" v-bind:page="page" v-on:prev-page="onPrevPage()" v-on:next-page="onNextPage()"></show-by-list>
+    <show-by-card v-if="resultsViewType == 'card' && itemsLoaded" v-bind:itemsList="items" v-bind:page="page" v-on:prev-page="onPrevPage()" v-on:next-page="onNextPage()"></show-by-card>
   </div>
 </template>
 
@@ -11,18 +12,21 @@ import ShowByList from "./show/ByList";
 import ShowByCard from "./show/ByCard";
 import PaginationMixIn from "./paginationmixin.js";
 import ResultsViewTypeSelector from "../utils/ResultsViewTypeSelector";
+import Loader from "../utils/Loader";
 
 export default {
   mixins: [PaginationMixIn],
   components: {
     ShowByList,
     ShowByCard,
-    ResultsViewTypeSelector
+    ResultsViewTypeSelector,
+    Loader
   },
   data() {
     return {
       items: [],
-      resultsViewType: this.$store.state.resultsViewType
+      resultsViewType: this.$store.state.resultsViewType,
+      itemsLoaded: false
     };
   },
   computed: {
@@ -37,6 +41,8 @@ export default {
       let screenName = url.searchParams.get("user-link").split("/")[3];
       let q = url.searchParams.get("user-fullname");
 
+      this.itemsLoaded = false;
+
       VK.Api.call(
         "execute.getFriendsList",
         {
@@ -49,6 +55,7 @@ export default {
         },
         r => {
           if (r.response.items) {
+            this.itemsLoaded = true;
             this.items = r.response.items;
             console.log(this.items);
           } else {
