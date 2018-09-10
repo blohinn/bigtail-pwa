@@ -19,6 +19,12 @@ export default {
       this.$store.commit("setAccessToken", this.$cookies.get("accessToken"));
       console.log("AccessToken loaded.");
     }
+    if (this.$cookies.get("resultsViewType")) {
+      this.$store.commit(
+        "changeResultsViewType",
+        this.$cookies.get("resultsViewType")
+      );
+    }
   }
 };
 </script>

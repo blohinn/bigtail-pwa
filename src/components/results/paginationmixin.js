@@ -18,7 +18,8 @@ let mixin = {
       this.updateItems(this.page);
     }
   },
-  created() {
+  mounted() {
+    console.log("вызван хук примеси");
     window.onpopstate = function(event) {
       // window.location.replace(document.location);
       window.location.replace("/");
