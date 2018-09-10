@@ -1,13 +1,12 @@
 <template>
   <div id="results-view-type-selector">
-    <div class="form-group">
-      <div class="radio">
-        <label><input v-on:change="changeViewType($event.target.value)" type="radio" name="optradio" value="list" checked>Списком</label>
-      </div>
-      <div class="radio">
-        <label><input v-on:change="changeViewType($event.target.value)" v-model="resultsViewType" type="radio" name="optradio" value="card">По одному</label>
-      </div>
+    <br>
+    <div class="text-center">
+      <label class="radio-inline"><input v-on:change="changeViewType($event.target.value)" type="radio" name="optradio" value="list" checked> Списком</label>
+      <span></span>
+      <label class="radio-inline"><input v-on:change="changeViewType($event.target.value)" v-model="resultsViewType" type="radio" name="optradio" value="card"> По одному</label>
     </div>
+    <br>
   </div>
 </template>
 

@@ -8,7 +8,10 @@
             <div>
               <template v-if="!searchFormsActivated">
                 <h1 class="text-center" id="h1-app-name">Bigtail</h1>
-                <p class="text-center">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce leo sapien, scelerisque quis tristique a, bibendum lobortis metus. Aliquam sollicitudin purus id eros pulvinar pellentesque.</p>
+                <p class="text-center">Приложение для удобного поиска ВКонтакте - результаты отображаются в виде удобных для просмотра карточек, исключая необходимость переходить на страницу пользователя.</p>
+                <p class="text-center">
+                  <a class="text-center" href="#">GIF</a>
+                </p>
                 <hr>
               </template>
 
