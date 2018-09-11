@@ -3,7 +3,7 @@
     <div class="text-center">
       <p>Авторизация необходима для получения списка участников закрытых групп. Вам не потребуется вводить логин и пароль от ВКонтакте, если вы уже авторизованы на сайте.
       </p>
-      <a class="btn btn-primary btn-lg" href="https://oauth.vk.com/authorize?client_id=6678040&display=page&redirect_uri=http://localhost:8080/auth&scope=friends,offline,photos&response_type=token&v=5.84">
+      <a class="btn btn-primary btn-lg" v-bind:href="authLink">
         <i class="fab fa-vk"></i> Войти через ВКонтакте</a>
       <br>
       <br>
@@ -14,7 +14,23 @@
 
 
 <script>
-export default {};
+export default {
+  computed: {
+    authLink() {
+      const protocol =
+        window.location.hostname == "localhost" ? "http" : "https";
+
+      const authLink =
+        "https://oauth.vk.com/authorize?client_id=6678040&display=page&redirect_uri=" +
+        protocol +
+        "://" +
+        window.location.host +
+        "/auth&scope=friends,offline,photos&response_type=token&v=5.84";
+
+      return authLink;
+    }
+  }
+};
 </script>
 
 <style>
