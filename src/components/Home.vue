@@ -9,9 +9,27 @@
               <template v-if="!searchFormsActivated">
                 <h1 class="text-center" id="h1-app-name">Bigtail</h1>
                 <p class="text-center">Приложение для удобного поиска ВКонтакте - результаты отображаются в виде удобных для просмотра карточек, исключая необходимость переходить на страницу пользователя.</p>
-                <p class="text-center">
-                  <a class="text-center" href="#">GIF</a>
-                </p>
+
+                <!-- Trigger the modal with a button -->
+                <div class="help-buttons text-center">
+                  <button type="button" class="btn btn-link" v-on:click="showUserGuide = !showUserGuide; showPWAGuide = false;">Демонстрация работы</button>
+                  <button type="button" class="btn btn-link" v-on:click="showPWAGuide = !showPWAGuide; showUserGuide = false;">Добавить на главный экран</button>
+                </div>
+
+                <div class="text-center" v-if="showUserGuide">
+                  <p>Демонстрация работы:</p>
+                  <video width="264" height="432" controls>
+                    <source src="/src/static/video/userguide.mp4" type="video/mp4">
+                  </video>
+                </div>
+
+                <div class="text-center" v-if="showPWAGuide">
+                  <p>Как добавить приложение на главный экран:</p>
+                  <video width="264" height="432" controls>
+                    <source src="/src/static/video/pwa.mp4" type="video/mp4">
+                  </video>
+                </div>
+
                 <hr>
               </template>
 
@@ -57,7 +75,9 @@ export default {
   data() {
     return {
       currentForm: null,
-      searchFormsActivated: false
+      searchFormsActivated: false,
+      showUserGuide: false,
+      showPWAGuide: false
     };
   },
   computed: {
