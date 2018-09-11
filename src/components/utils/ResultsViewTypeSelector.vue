@@ -1,6 +1,5 @@
 <template>
   <div id="results-view-type-selector">
-    <br>
     <div class="text-center">
       <label class="radio-inline"><input v-on:change="changeViewType($event.target.value)" type="radio" name="optradio" value="list" checked> Списком</label>
       <span></span>

@@ -1,5 +1,8 @@
 <template>
   <div id="results">
+    <p class="text-center" style="padding-top: 15px">
+      <a href="/">На главную</a>
+    </p>
     <results-view-type-selector v-on:results-view-type-changed="onResultsViewChanged($event)"></results-view-type-selector>
     <loader v-if="!itemsLoaded"></loader>
     <show-by-list v-if="resultsViewType == 'list' && itemsLoaded" v-bind:itemsList="items" v-bind:page="page" v-on:prev-page="onPrevPage()" v-on:next-page="onNextPage()"></show-by-list>
